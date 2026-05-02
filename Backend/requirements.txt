@@ -1,0 +1,9 @@
+ultralytics 
+roboflow 
+opencv-python 
+huggingface_hub 
+fastapi 
+uvicorn
+python-multipart
+Pylance
+python-dotenv
