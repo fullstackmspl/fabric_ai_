@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ── Dark mode variant for Tailwind v4 ── */
+@variant dark (&:where(.dark, .dark *));
+
+/* ── Base transitions ── */
+* { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+
+body {
+  background-color: #f8f9fc;
+  color: #111827;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.dark body {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+/* ── Navbar active pill ── */
+.nav-active {
+  background: #ede9fe;
+  color: #6d28d9;
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-weight: 600;
+}
+html.dark .nav-active { background: #4c1d95; color: #ddd6fe; }
+
+/* ── Hero fabric background ── */
+#hero {
+  background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.93) 42%, rgba(255,255,255,0.05) 100%);
+}
+html.dark #hero::before {
+  background: linear-gradient(to right, rgba(15,23,42,0.95) 42%, rgba(15,23,42,0.1) 100%);
+}
+
+/* ── Feature pills ── */
+.feature-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem; font-weight: 500;
+  color: #374151;
+  background: white;
+}
+html.dark .feature-pill { border-color: #334155; background: #1e293b; color: #cbd5e1; }
+
+/* ── Upload drop zone drag over ── */
+.drop-zone-drag-over { background: #ede9fe !important; border-color: #7c3aed !important; }
+html.dark .drop-zone-drag-over { background: #2e1065 !important; border-color: #a78bfa !important; }
+
+/* ── How it works connector ── */
+.step-connector {
+  flex: 1;
+  border-top: 2px dashed #d1d5db;
+  margin: 0 8px;
+  align-self: flex-start;
+  margin-top: 24px;
+}
+html.dark .step-connector { border-color: #475569; }
+
+/* ── Progress bars ── */
+.progress-bar-animate { transition: width 0.6s cubic-bezier(0.2,0.9,0.4,1.1); }
+
+/* ── Skeleton shimmer ── */
+.skeleton {
+  background: linear-gradient(90deg,#e5e7eb 25%,#f3f4f6 50%,#e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+html.dark .skeleton {
+  background: linear-gradient(90deg,#334155 25%,#475569 50%,#334155 75%);
+  background-size: 200% 100%;
+}
+
+/* ── Theme toggle ── */
+.theme-toggle { display: flex; align-items: center; }
+
+.toggle-label {
+  width: 60px; height: 30px;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  border-radius: 999px;
+  position: relative; cursor: pointer;
+  display: flex; align-items: center;
+  padding: 4px;
+  transition: all 0.4s ease;
+}
+
+#themeToggle { display: none; }
+
+.toggle-label .ball {
+  width: 22px; height: 22px;
+  background: white; border-radius: 50%;
+  position: absolute; left: 4px;
+  transition: transform 0.4s ease;
+}
+
+.toggle-label .icon { position: absolute; font-size: 12px; }
+.sun { left: 6px; color: #facc15; }
+.moon { right: 6px; color: #e5e7eb; }
+
+#themeToggle:checked + .toggle-label .ball { transform: translateX(28px); }
+#themeToggle:checked + .toggle-label { background: linear-gradient(135deg, #1f2937, #111827); }
+
+/* ── Card hover lift ── */
+.hover-lift { transition: transform 0.2s, box-shadow 0.2s; }
+.hover-lift:hover { transform: translateY(-3px); box-shadow: 0 16px 32px -8px rgba(109,40,217,0.12); }
+
+/* ── Custom scrollbar ── */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 10px; }
+html.dark .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #7c3aed; }
